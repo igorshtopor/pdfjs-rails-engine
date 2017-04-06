@@ -9,15 +9,17 @@ module PdfjsRailsEngine
         pdf.js-gh-pages/web/viewer.js
         pdf.js-gh-pages/build/pdf.js
         pdf.js-gh-pages/build/pdf.worker.js
+        pdf.js-gh-pages/web/images/*
       )
     end
 
     initializer 'pdfjs-rails-engine.assets.paths' do |app|
       app.config.assets.paths << File.expand_path("#{root}/lib")
+      config.assets.precompile += %w(vendor/assets/images/*)
     end
 
     # initializer 'pdfjs-rails-engine.load_static_assets' do |app|
-    #   app.middleware.use ::ActionDispatch::Static, "#{root}/vendor"
+    #   app.middleware.use ::ActionDispatch::Static, "#{root}/lib/web"
     # end
   end
 end
